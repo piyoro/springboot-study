@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Created By yeoseong_yoon -->
+    <!-- 로그 경로 변수 선언 -->
+    <property name="LOG_DIR" value="/logs/app" />
+    <property name="LOG_PATH" value="${LOG_DIR}/app.log"/>
+
+    <!-- Console Appender -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %-5level %d{HH:mm:ss.SSS} [%c:%L] %method - [%X{reqTrcId}] %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+
+    <logger name="com.example.demo" level="DEBUG"/>
+    <logger name="org.springframework" level="INFO"/>
+
+    <root level="DEBUG">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>

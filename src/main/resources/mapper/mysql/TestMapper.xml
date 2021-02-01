@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="TEST">
+
+	<select id="selectTestCnt" resultType="int">
+		select count(*) as cnt from tb_seq
+	</select>
+
+	<insert id="insertTest" useGeneratedKeys="true" keyProperty="seqNo" parameterType="TestVO">
+		INSERT INTO tb_seq (dummy)
+		VALUES (#{dummy})
+	</insert>
+
+	<select id="selectMaxSeqNo" resultType="int">
+		select max(seq_no) as cnt from tb_seq
+	</select>
+
+	<select id="selectTestSeq" parameterType="TestVO" resultType="TestVO">
+		select seq_no, dummy as cnt from tb_seq where seq_no = #{seqNo}
+	</select>
+
+	<update id="updateTestDummy" parameterType="TestVO">
+		update tb_seq set dummy = #{dummy} where seq_no = #{seqNo}
+	</update>
+
+</mapper>

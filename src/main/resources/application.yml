@@ -1,0 +1,26 @@
+server:
+  port: 8080
+spring:
+  #profile 설정을 안했을 시 active profile
+  profiles:
+    active: local
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/demo
+    username: demo
+    password: 1111
+
+
+mybatis:
+#  configuration:
+#    map-underscore-to-camel-case: true
+#  type-aliases-package: com.example.study.test.vo
+  mapper-locations: classpath*:/mapper/${app.dbms}/**/*.xml
+  config-location: classpath:/mybatis-config.xml
+
+app:
+  dbms: mysql
+  config: ${app.dbms}
+
+logging:
+  config: classpath:config/logback-config_${spring.profiles.active}.xml
